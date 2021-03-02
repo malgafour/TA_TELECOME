@@ -1,0 +1,67 @@
+﻿@model TA_TELECOME.Models.PhonesMessage
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row text-center">
+    <div class="col-md-6">
+        <div class="card text-white bg-dark mb-3">
+            <div class="card-header">10 phone numbers</div>
+            <div class="card-body">
+                <table class="table table-dark table-striped">
+                    @foreach (var item in ViewBag.PhoneList)
+                    {
+                        <tr>
+                            <td>@item.PhoneNumber</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card text-white bg-dark">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @foreach (var items in ViewBag.PhoneList)
+                        {
+                            <input type="hidden" value="@items.Id" name="PhoneId0[]" />
+                        }
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MessageText, htmlAttributes: new { @class = "control-label" })
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.MessageText, new { htmlAttributes = new { @class = "form-control", rows = "5" } })
+                                @Html.ValidationMessageFor(model => model.MessageText, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Send" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="card text-dark bg-warning mb-3">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+                <h5 class="card-title">Warning card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 

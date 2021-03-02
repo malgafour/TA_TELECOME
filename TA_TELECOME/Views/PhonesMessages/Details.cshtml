@@ -1,0 +1,42 @@
+﻿@model TA_TELECOME.Models.PhonesMessage
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PhonesMessage</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MessageText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MessageText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SendAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SendAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone.PhoneNumberOwnerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone.PhoneNumberOwnerName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
