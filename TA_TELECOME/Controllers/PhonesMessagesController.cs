@@ -52,14 +52,15 @@ namespace TA_TELECOME.Controllers
         public ActionResult Create(PhonesMessage phonesMessage,int[] PhoneId0)
         {
             if (ModelState.IsValid)
-            {  
-                foreach (var item in PhoneId0)
+            {
+                List<PhonesMessage> ph = new List<PhonesMessage>();
+                foreach(var items in PhoneId0)
                 {
-                    db.PhonesMessages.Add(new PhonesMessage { PhoneId = item });
-                    phonesMessage.SendAt = DateTime.Now.ToString("dd/MM/yyyy");
-                    phonesMessage.MessageText = phonesMessage.MessageText;
+                    ph.Add(new PhonesMessage { PhoneId = items, MessageText = phonesMessage.MessageText , SendAt = DateTime.Now.ToString("dd/MM/yyyy") });
+                    var phone = db.Phones.Find(items);
+                    phone.SentAt = DateTime.Now.ToString("dd/MM/yyyy");
                 }
-                db.PhonesMessages.Add(phonesMessage);
+                db.PhonesMessages.AddRange(ph); 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
